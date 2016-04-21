@@ -107,6 +107,9 @@ public class HomeMenu : MonoBehaviour
 		float delaySecs = 0.0f;
 		if (show)
 		{
+			if (curser != null) {
+				curser.renderCrosshair = true;
+			}
 			// orient and position in front of the player's view
 			Vector3 offset = (cameraController.centerEyeAnchor.forward * distanceFromViewer);
 			offset.y = (transform.position.y - cameraController.centerEyeAnchor.position.y);
@@ -123,6 +126,9 @@ public class HomeMenu : MonoBehaviour
 		}
 		else
 		{
+			if (curser != null) {
+				curser.renderCrosshair = false;
+			}
 			// hide the menu after the hide anim finishes
 			delaySecs = (immediate) ? 0.0f : PlayAnim(menuHideAnim);
 		}

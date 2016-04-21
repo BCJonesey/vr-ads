@@ -35,6 +35,7 @@ public class Crosshair3D : MonoBehaviour
 	public float						offsetFromObjects = 0.1f;
 	public float						fixedDepth = 3.0f;
 	public OVRCameraRig					cameraController = null;
+	public bool 						renderCrosshair = true;
 
 	private Transform					thisTransform = null;
 	private Material					crosshairMaterial = null;
@@ -102,7 +103,7 @@ public class Crosshair3D : MonoBehaviour
 		Vector3 cameraPosition = cameraController.centerEyeAnchor.position;
 		Vector3 cameraForward = cameraController.centerEyeAnchor.forward;
 
-		GetComponent<Renderer>().enabled = true;
+		GetComponent<Renderer>().enabled = renderCrosshair;
 
 		//*************************
 		// position the cursor based on the mode
