@@ -16,7 +16,7 @@ using System.Collections;
 public enum HomeCommand
 {
 	None = -1,
-	NewGame = 0,
+	NewVideo = 0,
 	Continue = 1,
 	Quit = 2,		// return to the Oculus home/dashboard app
 }
@@ -25,6 +25,7 @@ public class HomeMenu : MonoBehaviour
 {
 
 	public OVRCameraRig			cameraController = null;
+	public Crosshair3D			curser = null;
 	public float				distanceFromViewer = 3.0f;
 	public float				doubleTapDelay = 0.25f;
 	public float				longPressDelay = 0.75f;
@@ -322,7 +323,7 @@ public class HomeMenu : MonoBehaviour
 		bool immediate = false;
 		switch (selectedCommand)
 		{
-		case HomeCommand.NewGame:
+		case HomeCommand.NewVideo:
 			// TODO
 			break;
 		case HomeCommand.Continue:
