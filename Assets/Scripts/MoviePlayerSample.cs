@@ -71,6 +71,7 @@ public class MoviePlayerSample : MonoBehaviour
 	private string	mediaFullPath = string.Empty;
 	private bool	startedVideo = false;
 	private bool	videoPaused = false;
+	private bool    firstLoad = true;
 
 #if (UNITY_ANDROID && !UNITY_EDITOR)
 	private IntPtr 	nativeTexturePtr = IntPtr.Zero;
@@ -309,22 +310,36 @@ public class MoviePlayerSample : MonoBehaviour
 
 		IntPtr androidSurface = OVR_Media_Surface(textureId, 2880, 1440);
 		Debug.Log("MoviePlayer: SetUpVideoPlayer after create surface");
+		
+		if (!firstLoad) {
+			mediaPlayer.Call("release");
+		}
 
-		AndroidJavaObject mediaPlayer = new AndroidJavaObject("android/media/MediaPlayer");
+		mediaPlayer = new AndroidJavaObject("android/media/MediaPlayer");
 
 		// Can't use AndroidJavaObject.Call() with a jobject, must use low level interface
 		//mediaPlayer.Call("setSurface", androidSurface);
+
 		IntPtr setSurfaceMethodId = AndroidJNI.GetMethodID(mediaPlayer.GetRawClass(),"setSurface","(Landroid/view/Surface;)V");
-		jvalue[] parms = new jvalue[1];
-		parms[0] = new jvalue();
-		parms[0].l = androidSurface;
-		AndroidJNI.CallObjectMethod(mediaPlayer.GetRawObject(), setSurfaceMethodId, parms);
+		IntPtr setDisplayMethodId = AndroidJNI.GetMethodID(mediaPlayer.GetRawClass(),"setSurface","(Landroid/view/Surface;)V");
+		
+
+
+		jvalue[] parms2 = new jvalue[1];
+		parms2[0] = new jvalue();
+		parms2[0].l = androidSurface;
+		AndroidJNI.CallObjectMethod(mediaPlayer.GetRawObject(), setSurfaceMethodId, parms2);
+		firstLoad = false;
 
 		try
 		{
+			Debug.Log("MoviePlayer: setdatasource");
 			mediaPlayer.Call("setDataSource", mediaPath);
+
+			Debug.Log("MoviePlayer: prepare");
 			mediaPlayer.Call("prepare");
-			//mediaPlayer.Call("setLooping", true);
+
+			Debug.Log("MoviePlayer: start");
 			mediaPlayer.Call("start");
 		}
 		catch (Exception e)
@@ -370,13 +385,8 @@ public class MoviePlayerSample : MonoBehaviour
 		Debug.Log("Kansas leftPoster: " + responseJSON["leftPoster"]);
 		string leftPosterURL = responseJSON["leftPoster"];
 	
-		if (rightPoster != null) {
-			rightPoster.GetComponent<Renderer>().material.mainTexture = ImageToTexture2D(rightPosterURL);
-		}
-
-		if (leftPoster != null) {
-			leftPoster.GetComponent<Renderer>().material.mainTexture = ImageToTexture2D(leftPosterURL);
-		}
+		StartCoroutine(LoadImage(rightPoster, rightPosterURL));
+		StartCoroutine(LoadImage(leftPoster, leftPosterURL));
 			
 		Debug.Log("Kansas start: " + videoURL);
 		if (videoURL != string.Empty)
@@ -398,6 +408,15 @@ public class MoviePlayerSample : MonoBehaviour
 
 		return _texture;
 	}
+
+
+	IEnumerator LoadImage(GameObject go, string url) {
+		WWW www = new WWW(url);
+		yield return www;
+
+		go.GetComponent<Renderer>().material.mainTexture = www.texture;//ImageToTexture2D(rightPosterURL);
+	}
+
 
 	public void LoadVideo() {
 		startedVideo = false;

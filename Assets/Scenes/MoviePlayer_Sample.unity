@@ -478,7 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 782577517}
   curser: {fileID: 2019139033}
-  moviePlayer: {fileID: 0}
+  moviePlayer: {fileID: 1929380946}
   distanceFromViewer: 3
   doubleTapDelay: .25
   longPressDelay: .75
@@ -798,7 +798,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400014, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
   m_PrefabInternal: {fileID: 2141097333}
   m_GameObject: {fileID: 401429316}
-  m_LocalRotation: {x: 4.84541367e-08, y: -5.86402615e-09, z: -.597300589, w: .802017391}
+  m_LocalRotation: {x: 4.84541403e-08, y: -5.8640266e-09, z: -.597300649, w: .80201745}
   m_LocalPosition: {x: -.371733814, y: -.00199662754, z: .073036164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3480,6 +3480,10 @@ Prefab:
       propertyPath: curser
       value: 
       objectReference: {fileID: 2019139033}
+    - target: {fileID: 11400000, guid: 4edc4cd59ea154aaab7dcec77baa628a, type: 2}
+      propertyPath: moviePlayer
+      value: 
+      objectReference: {fileID: 1929380946}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4edc4cd59ea154aaab7dcec77baa628a, type: 2}
   m_RootGameObject: {fileID: 290234863}
@@ -3814,7 +3818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movieName: HenryShort.mp4
-  rightPoster: {fileID: 0}
+  rightPoster: {fileID: 1597587601}
   leftPoster: {fileID: 1624095417}
 --- !u!82 &1929380947
 AudioSource:
