@@ -386,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 782577517}
   curser: {fileID: 2019139033}
+  moviePlayer: {fileID: 0}
   distanceFromViewer: 3
   doubleTapDelay: .25
   longPressDelay: .75
@@ -1735,6 +1736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movieName: HenryShort.mp4
+  rightPoster: {fileID: 218572774}
+  leftPoster: {fileID: 1624095417}
 --- !u!82 &1929380947
 AudioSource:
   m_ObjectHideFlags: 0

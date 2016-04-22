@@ -17,6 +17,7 @@ using System.Collections;					// required for Coroutines
 using System.Runtime.InteropServices;		// required for DllImport
 using System;								// requred for IntPtr
 using System.IO;							// required for File
+using SimpleJSON;
 
 /************************************************************************************
 Usage:
@@ -63,6 +64,9 @@ Implementation:
 public class MoviePlayerSample : MonoBehaviour
 {
 	public string 	movieName = string.Empty;
+
+	public GameObject rightPoster = null;
+	public GameObject leftPoster = null;
 
 	private string	mediaFullPath = string.Empty;
 	private bool	startedVideo = false;
@@ -138,15 +142,6 @@ public class MoviePlayerSample : MonoBehaviour
 			Debug.LogError("Can't GetNativeTexturePtr() for movie surface");
 		}
 
-		if (movieName != string.Empty)
-		{
-			StartCoroutine(RetrieveStreamingAsset(movieName));
-		}
-		else
-		{
-			Debug.LogError("No media file name provided");
-		}
-
 #if UNITY_ANDROID && !UNITY_EDITOR
 		// This apparently has to be done at Awake time, before
 		// multi-threaded rendering starts.
@@ -201,7 +196,7 @@ public class MoviePlayerSample : MonoBehaviour
 	/// <summary>
 	/// Auto-starts video playback
 	/// </summary>
-	IEnumerator DelayedStartVideo()
+	IEnumerator DelayedStartVideo(string videoURL)
 	{
 		yield return null; // delay 1 frame to allow MediaSurfaceInit from the render thread.
 
@@ -212,7 +207,7 @@ public class MoviePlayerSample : MonoBehaviour
 			startedVideo = true;
 #if (UNITY_ANDROID && !UNITY_EDITOR)
 			// This can only be done once multi-threaded rendering is running
-			mediaPlayer = StartVideoPlayerOnTextureId(nativeTexturePtr, mediaFullPath);
+			mediaPlayer = StartVideoPlayerOnTextureId(nativeTexturePtr, videoURL);
 #else
 			if (movieTexture != null && movieTexture.isReadyToPlay)
 			{
@@ -229,7 +224,7 @@ public class MoviePlayerSample : MonoBehaviour
 	void Start()
 	{
 		Debug.Log("MovieSample Start");
-		StartCoroutine(DelayedStartVideo());
+
 	}
 
 	void Update()
@@ -329,7 +324,7 @@ public class MoviePlayerSample : MonoBehaviour
 		{
 			mediaPlayer.Call("setDataSource", mediaPath);
 			mediaPlayer.Call("prepare");
-			mediaPlayer.Call("setLooping", true);
+			//mediaPlayer.Call("setLooping", true);
 			mediaPlayer.Call("start");
 		}
 		catch (Exception e)
@@ -357,4 +352,55 @@ public class MoviePlayerSample : MonoBehaviour
 	[DllImport("OculusMediaSurface")]
 	private static extern void OVR_Media_Surface_SetEventBase(int eventBase);
 #endif
+
+	private IEnumerator FetchBen() {
+		Debug.Log("Kansas start");
+		WWW www = new WWW("https://fake-ads.herokuapp.com/ad");
+		yield return www;
+		Debug.Log("Kansas parse: " + www.text);
+		var responseJSON = JSON.Parse(www.text);
+		Debug.Log("Kansas after parse");
+
+		Debug.Log("Kansas videoURL: " + responseJSON["videoUrl"]);
+		string videoURL = responseJSON["videoUrl"];
+
+		Debug.Log("Kansas rightPoster: " + responseJSON["rightPoster"]);
+		string rightPosterURL = responseJSON["rightPoster"];
+
+		Debug.Log("Kansas leftPoster: " + responseJSON["leftPoster"]);
+		string leftPosterURL = responseJSON["leftPoster"];
+	
+		if (rightPoster != null) {
+			rightPoster.GetComponent<Renderer>().material.mainTexture = ImageToTexture2D(rightPosterURL);
+		}
+
+		if (leftPoster != null) {
+			leftPoster.GetComponent<Renderer>().material.mainTexture = ImageToTexture2D(leftPosterURL);
+		}
+			
+		Debug.Log("Kansas start: " + videoURL);
+		if (videoURL != string.Empty)
+		{
+			Debug.Log("Kansas loading: " + videoURL);
+			StartCoroutine(DelayedStartVideo(videoURL));
+		}
+		else
+		{
+			Debug.LogError("No media file name provided");
+		}
+	}
+
+	private Texture2D ImageToTexture2D(string url) {
+		var image = new WWW(url);
+		Texture2D _texture = new Texture2D(256, 256, TextureFormat.DXT5, false);
+		image.LoadImageIntoTexture(_texture);
+		_texture.wrapMode = TextureWrapMode.Clamp;
+
+		return _texture;
+	}
+
+	public void LoadVideo() {
+		startedVideo = false;
+		StartCoroutine(FetchBen());
+	}
 }
