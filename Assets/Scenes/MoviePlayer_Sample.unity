@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 1166163684}
   m_GameObject: {fileID: 16588119}
   m_LocalRotation: {x: -.00166778849, y: -.999804139, z: .00856568385, w: .0177650414}
-  m_LocalPosition: {x: -2.5, y: .189999998, z: 1.67999995}
+  m_LocalPosition: {x: -2.5, y: .0500000007, z: 1.67999995}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.50000012}
   m_Children:
   - {fileID: 2114425124}
@@ -183,7 +183,7 @@ Transform:
   - {fileID: 1160872203}
   - {fileID: 1828508506}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
 --- !u!82 &290234865
 AudioSource:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &413321087
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,13 +467,13 @@ Transform:
   m_PrefabInternal: {fileID: 1813097530}
   m_GameObject: {fileID: 413321087}
   m_LocalRotation: {x: -.00166778849, y: -.999804139, z: .00856568385, w: .0177650414}
-  m_LocalPosition: {x: 2.5, y: .189999998, z: 1.67999995}
+  m_LocalPosition: {x: 2.5, y: .0500000007, z: 1.67999995}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.50000012}
   m_Children:
   - {fileID: 811708504}
   - {fileID: 1568608501}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!95 &413321089
 Animator:
   serializedVersion: 3
@@ -1031,7 +1031,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .189999998
+      value: .0500000007
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1055,7 +1055,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalScale.x
@@ -1117,13 +1117,13 @@ Transform:
   m_PrefabInternal: {fileID: 1005367444}
   m_GameObject: {fileID: 1022236443}
   m_LocalRotation: {x: -.00166778849, y: -.999804139, z: .00856568385, w: .0177650414}
-  m_LocalPosition: {x: 0, y: .189999998, z: 1.67999995}
+  m_LocalPosition: {x: 0, y: .0500000007, z: 1.67999995}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 922292132}
   - {fileID: 329539855}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1 &1160872202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1225,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .189999998
+      value: .0500000007
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1829,7 +1829,7 @@ Transform:
   m_LocalScale: {x: .150000006, y: 1, z: .150000006}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &1597962926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2015,7 @@ Transform:
   m_LocalScale: {x: .150000006, y: 1, z: .150000006}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &1658353666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,7 +2220,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .189999998
+      value: .0500000007
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2244,7 +2244,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 80376aaddec541049a52d67e7bdf8f66, type: 3}
       propertyPath: m_LocalScale.x
