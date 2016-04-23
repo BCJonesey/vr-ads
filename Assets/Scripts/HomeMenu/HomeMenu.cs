@@ -26,7 +26,7 @@ public class HomeMenu : MonoBehaviour
 
 	public OVRCameraRig			cameraController = null;
 	public Crosshair3D			curser = null;
-	public MoviePlayerSample	moviePlayer = null;
+	public AndroidMoviePlayer	moviePlayer = null;
 	public float				distanceFromViewer = 3.0f;
 	public float				doubleTapDelay = 0.25f;
 	public float				longPressDelay = 0.75f;
@@ -332,7 +332,7 @@ public class HomeMenu : MonoBehaviour
 		{
 		case HomeCommand.NewVideo:
 			// TODO
-			moviePlayer.LoadVideo();
+			moviePlayer.PlayMovie();
 			break;
 		case HomeCommand.Continue:
 			// TODO

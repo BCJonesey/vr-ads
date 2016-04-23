@@ -225,6 +225,7 @@ public class MoviePlayerSample : MonoBehaviour
 	void Start()
 	{
 		Debug.Log("MovieSample Start");
+		StartMovie();
 
 	}
 
@@ -400,16 +401,6 @@ public class MoviePlayerSample : MonoBehaviour
 		}
 	}
 
-	private Texture2D ImageToTexture2D(string url) {
-		var image = new WWW(url);
-		Texture2D _texture = new Texture2D(256, 256, TextureFormat.DXT5, false);
-		image.LoadImageIntoTexture(_texture);
-		_texture.wrapMode = TextureWrapMode.Clamp;
-
-		return _texture;
-	}
-
-
 	IEnumerator LoadImage(GameObject go, string url) {
 		WWW www = new WWW(url);
 		yield return www;
@@ -417,9 +408,32 @@ public class MoviePlayerSample : MonoBehaviour
 		go.GetComponent<Renderer>().material.mainTexture = www.texture;//ImageToTexture2D(rightPosterURL);
 	}
 
+	private IEnumerator FetchLocal() {
+		string streamingMediaPath = Application.streamingAssetsPath + "/HenryShort.mp4";
+		string persistentPath = Application.persistentDataPath + "/HenryShort.mp4";
+		if (!File.Exists(persistentPath))
+		{
+			WWW wwwReader = new WWW(streamingMediaPath);
+			yield return wwwReader;
+
+			if (wwwReader.error != null)
+			{
+				Debug.LogError("wwwReader error: " + wwwReader.error);
+			}
+
+			System.IO.File.WriteAllBytes(persistentPath, wwwReader.bytes);
+		}
+		StartCoroutine(DelayedStartVideo(persistentPath));
+	}
+
+	public void StartMovie() {
+		startedVideo = false;
+		StartCoroutine(FetchLocal());
+	}
 
 	public void LoadVideo() {
+		//StopMovie();
 		startedVideo = false;
-		StartCoroutine(FetchBen());
+		//StartCoroutine(FetchBen());
 	}
 }
