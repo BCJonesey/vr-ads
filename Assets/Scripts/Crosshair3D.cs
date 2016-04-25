@@ -143,7 +143,7 @@ public class Crosshair3D : MonoBehaviour
 			break;
 		}
 
-		if (Input.GetButtonDown(OVRGamepadController.ButtonNames[(int)OVRGamepadController.Button.A]))
+		if (Input.GetButtonDown("Fire1"))
 		{
 			ray = new Ray(cameraPosition, cameraForward);
 			if (Physics.Raycast(ray, out hit))

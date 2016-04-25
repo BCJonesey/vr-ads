@@ -5608,10 +5608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04eb39a184c344c7e8676826da3cab75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightPoster: {fileID: 1976473729}
-  leftPoster: {fileID: 1624095417}
-  rightLight: {fileID: 2046514475}
-  leftLight: {fileID: 71045382}
+  rightPoster: {fileID: 1976473734}
+  leftPoster: {fileID: 1624095422}
 --- !u!1 &1349550423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6796,6 +6794,7 @@ GameObject:
   - 33: {fileID: 1624095420}
   - 64: {fileID: 1624095419}
   - 23: {fileID: 1624095418}
+  - 114: {fileID: 1624095422}
   m_Layer: 0
   m_Name: LeftPicture
   m_TagString: Untagged
@@ -6856,6 +6855,18 @@ Transform:
   - {fileID: 71045381}
   m_Father: {fileID: 0}
   m_RootOrder: 10
+--- !u!114 &1624095422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624095417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a103a06794ad46ec80076c877bdceaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posterLight: {fileID: 71045382}
 --- !u!1 &1636931934
 GameObject:
   m_ObjectHideFlags: 0
@@ -8178,6 +8189,7 @@ GameObject:
   - 33: {fileID: 1976473732}
   - 64: {fileID: 1976473731}
   - 23: {fileID: 1976473730}
+  - 114: {fileID: 1976473734}
   m_Layer: 0
   m_Name: RightPicture
   m_TagString: Untagged
@@ -8238,6 +8250,18 @@ Transform:
   - {fileID: 2046514474}
   m_Father: {fileID: 0}
   m_RootOrder: 11
+--- !u!114 &1976473734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1976473729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a103a06794ad46ec80076c877bdceaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posterLight: {fileID: 2046514475}
 --- !u!1 &1978230251
 GameObject:
   m_ObjectHideFlags: 0
