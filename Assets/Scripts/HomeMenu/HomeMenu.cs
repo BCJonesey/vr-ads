@@ -332,7 +332,7 @@ public class HomeMenu : MonoBehaviour
 		{
 		case HomeCommand.NewVideo:
 			// TODO
-			moviePlayer.PlayMovie();
+			moviePlayer.TogglePlay();
 			break;
 		case HomeCommand.Continue:
 			// TODO

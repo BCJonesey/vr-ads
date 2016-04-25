@@ -23,6 +23,9 @@ public class AndroidMoviePlayer : MonoBehaviour {
 
 	public GameObject rightPoster = null;
 	public GameObject leftPoster = null;
+
+	public Light rightLight = null;
+	public Light leftLight = null;
 	
 	private bool	videoPaused = false;
 
@@ -76,8 +79,7 @@ public class AndroidMoviePlayer : MonoBehaviour {
 	}
 
 	void Start() {
-		Debug.Log("MovieSample Start");
-		LoadMovie();
+		PlayAd();
 	}
 	
 	void Update() {
@@ -134,6 +136,17 @@ public class AndroidMoviePlayer : MonoBehaviour {
 		StartCoroutine(LoadMovieInternal());
 	}
 
+	public void TogglePlay() {
+		if (mediaPlayer != null) {
+			videoPaused = !videoPaused;
+			try {
+				mediaPlayer.Call((videoPaused) ? "pause" : "start");
+			} catch (Exception e) {
+				Debug.Log("Failed to start/pause mediaPlayer with message " + e.Message);
+			}
+		}
+	}
+
 	public void PlayMovie() {
 		StartVideo();
 	}
@@ -143,8 +156,8 @@ public class AndroidMoviePlayer : MonoBehaviour {
 	}
 
 	private IEnumerator LoadMovieInternal(bool startVideo = false) {
-		string streamingMediaPath = Application.streamingAssetsPath + "/HenryShort.mp4";
-		string persistentPath = Application.persistentDataPath + "/HenryShort.mp4";
+		string streamingMediaPath = Application.streamingAssetsPath + "/Rick.and.Morty.mp4";
+		string persistentPath = Application.persistentDataPath + "/Rick.and.Morty.mp4";
 		if (!File.Exists(persistentPath)) {
 			WWW wwwReader = new WWW(streamingMediaPath);
 			yield return wwwReader;
@@ -197,7 +210,7 @@ public class AndroidMoviePlayer : MonoBehaviour {
 			mediaPlayer.Call("stop");
 			if (currentVideo == movieData) {
 				movieData.Playing = false;
-				movieData.CurrentPosition = mediaPlayer.Call<int>("getCurrentPosition") - 2;
+				movieData.CurrentPosition = mediaPlayer.Call<int>("getCurrentPosition") - 5;
 			}
 			// Release media from player
 			mediaPlayer.Call("release");
@@ -238,9 +251,13 @@ public class AndroidMoviePlayer : MonoBehaviour {
 		try {
 			Debug.Log("Starting video: " + currentVideo.MediaPath);
 			if (currentVideo == movieData) {
-				timeLeft = 30.0f;
+				timeLeft = 240.0f;
+				rightLight.enabled = false;
+				leftLight.enabled = false;
 			} else {
-				timeLeft = (float) (mediaPlayer.Call<int>("getDuration") / 1000);
+				timeLeft = (float) (mediaPlayer.Call<int>("getDuration") / 1000) + 2;
+				rightLight.enabled = true;
+				leftLight.enabled = true;
 			}
 			checkTime = true;
 			Debug.Log("timeLeft: " + timeLeft);
