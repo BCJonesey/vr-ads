@@ -23,10 +23,8 @@ public class VideoData {
 			currentPosition = value;
 		}
 	}
-
-	private bool playing = false;
+		
 	private bool started = false;
-
 	public bool Started {
 		get {
 			return started;
@@ -36,6 +34,7 @@ public class VideoData {
 		}
 	}
 
+	private bool playing = false;
 	public bool Playing { 
 		get {
 			return playing;
